@@ -14,6 +14,9 @@ export class UsersService {
   }
 
   findOne(id: number): Promise<User> {
+    if (!id) {
+      return null;
+    }
     return this.repo.findOne(id);
   }
 
@@ -27,6 +30,7 @@ export class UsersService {
       throw new NotFoundException('user not found');
     }
     Object.assign(user, attrs);
+    // TODO after update 동작확인
     return this.repo.save(user);
   }
 
@@ -35,6 +39,7 @@ export class UsersService {
     if (!user) {
       throw new NotFoundException('user not found');
     }
+    // TODO after remove 동작확인
     return this.repo.remove(user);
   }
 }
