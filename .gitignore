@@ -36,3 +36,4 @@ lerna-debug.log*
 
 .history
 db.sqlite
+test.sqlite
