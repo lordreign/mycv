@@ -2,6 +2,7 @@ import {
   AfterInsert,
   AfterRemove,
   AfterUpdate,
+  BeforeInsert,
   Entity,
   Column,
   PrimaryGeneratedColumn,
@@ -21,6 +22,11 @@ export class User {
   @AfterInsert()
   logInsert() {
     console.log('Inserted User with id', this.id);
+  }
+
+  @BeforeInsert()
+  checkEmail() {
+    //  email validation
   }
 
   @AfterUpdate()
