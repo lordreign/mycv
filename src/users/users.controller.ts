@@ -63,9 +63,9 @@ export class UsersController {
   // @UseInterceptors(new SerializeInterceptor(UserDto))
   // @Serialize(UserDto) // 단일 항목에만 적용
   @Get('/:id')
-  findUser(@Param('id') id: string) {
+  async findUser(@Param('id') id: string) {
     console.log('handler is running');
-    const user = this.usersService.findOne(parseInt(id, 10));
+    const user = await this.usersService.findOne(parseInt(id, 10));
     if (!user) {
       throw new NotFoundException('not found user');
     }

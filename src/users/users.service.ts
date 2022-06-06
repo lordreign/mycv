@@ -13,11 +13,11 @@ export class UsersService {
     return this.repo.save(user);
   }
 
-  findOne(id: number): Promise<User> {
+  async findOne(id: number): Promise<User> {
     if (!id) {
       return null;
     }
-    return this.repo.findOne(id);
+    return await this.repo.findOne(id);
   }
 
   find(email: string): Promise<User[]> {
