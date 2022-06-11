@@ -1,0 +1,27 @@
+###
+POST http://localhost:3000/reports
+Content-Type: application/json
+
+{
+  "price": 10000,
+  "make": "현대",
+  "model": "Sonata",
+  "year": 2019,
+  "lng": 0,
+  "lat": 0,
+  "mileage": 5000
+}
+
+###
+PATCH http://localhost:3000/reports/1
+Content-Type: application/json
+
+{
+  "approved": true
+}
+
+### estimate
+Get http://localhost:3000/reports?make=현대&model=Sonata&lat=1&lng=1&mileage=5000&year=2019
+
+### findOne
+Get http://localhost:3000/reports/1

@@ -1,3 +1,4 @@
+import { Report } from 'src/reports/report.entity';
 import {
   AfterInsert,
   AfterRemove,
@@ -6,6 +7,7 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -13,11 +15,19 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @OneToMany(() => Report, (report) => report.user, {
+    // eager: true, // eager loading 예시
+  })
+  reports: Report[]; // lazy loading 예시
+
   @Column()
   email: string;
 
   @Column()
   password: string;
+
+  @Column({ default: false })
+  admin: boolean;
 
   @AfterInsert()
   logInsert() {

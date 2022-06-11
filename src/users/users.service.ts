@@ -21,7 +21,12 @@ export class UsersService {
   }
 
   find(email: string): Promise<User[]> {
-    return this.repo.find({ email });
+    return this.repo.find({
+      relations: ['reports'],
+      where: {
+        email,
+      },
+    });
   }
 
   async update(id: number, attrs: Partial<User>): Promise<User> {
