@@ -10,7 +10,7 @@ export class Report {
   approved: boolean;
 
   @ManyToOne(() => User, (user) => user.reports)
-  user: User;
+  user: Promise<User>;
 
   @Column()
   price: number;

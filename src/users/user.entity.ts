@@ -18,7 +18,7 @@ export class User {
   @OneToMany(() => Report, (report) => report.user, {
     // eager: true, // eager loading 예시
   })
-  reports: Report[]; // lazy loading 예시
+  reports: Promise<Report[]>; // lazy loading 예시
 
   @Column()
   email: string;

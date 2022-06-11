@@ -20,13 +20,24 @@ export class UsersService {
     return await this.repo.findOne(id);
   }
 
-  find(email: string): Promise<User[]> {
-    return this.repo.find({
-      relations: ['reports'],
+  async find(email: string): Promise<User[]> {
+    // return this.repo.find({
+    //   relations: ['reports'],
+    //   where: {
+    //     email,
+    //   },
+    // });
+
+    // 두가지 케이스로 가져올 수 있다..
+    const users = await this.repo.find({
       where: {
         email,
       },
     });
+    if (users.length > 0) {
+      console.log(await users[0].reports);
+    }
+    return users;
   }
 
   async update(id: number, attrs: Partial<User>): Promise<User> {

@@ -38,7 +38,8 @@ export class ReportsService {
 
   async create(reportDto: CreateReportDto, user: User) {
     const report = this.repo.create(reportDto);
-    report.user = user;
+    report.user = Promise.resolve(user);
+    // report.user = Promise.resolve([user]); // 만약 여러개일 경우
     return await this.repo.save(report);
   }
 
